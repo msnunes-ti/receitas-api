@@ -1,5 +1,6 @@
 package com.example.receitas.controllers;
 
+import com.example.receitas.dtos.AtualizaReceitaDTO;
 import com.example.receitas.dtos.CadastraReceitaDTO;
 import com.example.receitas.dtos.ReceitaDTO;
 import com.example.receitas.services.ReceitaService;
@@ -19,7 +20,7 @@ public class ReceitaController {
 
     @GetMapping(path = "/{id}")
     public ReceitaDTO buscarPorId(@PathVariable Long id) {
-        return receitaService.buscarTodosPorId(id);
+        return receitaService.buscaReceitaPorId(id);
     }
 
     @GetMapping
@@ -32,8 +33,13 @@ public class ReceitaController {
         receitaService.cadastraReceita(cadastraReceitaDTO);
     }
 
-    @PutMapping
-    public void atualizaReceita(@RequestBody @Valid @NotNull AtualizaReceitaDTO atualizaReceitaDTO) {
+    @PutMapping(path = "/{id}")
+    public void atualizaReceita(@PathVariable Long id, @RequestBody @Valid @NotNull AtualizaReceitaDTO atualizaReceitaDTO) {
+        receitaService.atualizaReceita(id, atualizaReceitaDTO);
+    }
 
+    @DeleteMapping(path = "/{id}")
+    public void deletaReceitaPorId(@PathVariable Long id) {
+        receitaService.deletaReceita(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.receitas.services;
 
+import com.example.receitas.dtos.AtualizaReceitaDTO;
 import com.example.receitas.dtos.CadastraReceitaDTO;
 import com.example.receitas.dtos.ReceitaDTO;
 import com.example.receitas.mappers.ReceitaMapper;
@@ -17,12 +18,12 @@ public class ReceitaService {
 
     private final ReceitaRepository receitaRepository;
 
-    private Receita buscarPorId(Long id) {
+    private Receita buscaPorId(Long id) {
         return receitaRepository.findById(id).orElseThrow(() -> new RuntimeException("Id não encontrado"));
     }
 
-    public ReceitaDTO buscarTodosPorId (Long id) {
-        return ReceitaMapper.toReceitaDTO(buscarPorId(id));
+    public ReceitaDTO buscaReceitaPorId(Long id) {
+        return ReceitaMapper.toReceitaDTO(buscaPorId(id));
     }
 
     public List<ReceitaDTO> buscarTodos(String nome) {
@@ -37,5 +38,17 @@ public class ReceitaService {
         receitaRepository.save(ReceitaMapper.toReceita(cadastraReceitaDTO));
     }
 
+    @Transactional
+    public void atualizaReceita(Long id, AtualizaReceitaDTO atualizaReceitaDTO) {
+        Receita receitaEncontrada = buscaPorId(id);
+        Receita receitaAtualizar = ReceitaMapper.toReceitaAtualiza(atualizaReceitaDTO);
+        receitaAtualizar.setId(receitaEncontrada.getId());
+        receitaRepository.save(receitaAtualizar);
+    }
 
+    @Transactional
+    public void deletaReceita (Long id) {
+        Receita receita = buscaPorId(id);
+        receitaRepository.delete(receita);
+    }
 }

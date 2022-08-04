@@ -18,7 +18,7 @@ public class Receita {
     private Long id;
 
     @NotNull
-    @Column(name = "nome_receita", unique = true, nullable = false)
+    @Column(name = "nome_receita", nullable = false)
     private String nomeReceita;
 
     @NotNull
@@ -30,7 +30,7 @@ public class Receita {
     private String rendimento;
 
     @NotNull
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "receita_ingredientes", nullable = false)
     private List<Ingrediente> ingredientes;
 
