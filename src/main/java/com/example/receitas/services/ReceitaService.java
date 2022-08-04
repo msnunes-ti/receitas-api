@@ -1,6 +1,7 @@
 package com.example.receitas.services;
 
 import com.example.receitas.dtos.ReceitaDTO;
+import com.example.receitas.mappers.ReceitaMapper;
 import com.example.receitas.models.Receita;
 import com.example.receitas.repositorys.ReceitaRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +15,20 @@ public class ReceitaService {
 
     private final ReceitaRepository receitaRepository;
 
-    private final Receita buscarPorId(Long id) {
+    private Receita buscarPorId(Long id) {
         return receitaRepository.findById(id).orElseThrow(() -> new RuntimeException("Id não encontrado"));
     }
 
-    public List<ReceitaDTO> buscarTodos(Long id) {
-        if (id == null) {
-            receitaRepository.findAll();
-        }
-        return buscarPorId(id);
+    public ReceitaDTO buscarTodosPorId (Long id) {
+        return ReceitaMapper.toReceitaDTO(buscarPorId(id));
     }
+
+    public List<ReceitaDTO> buscarTodos(String nome) {
+        if (nome == null) {
+            return ReceitaMapper.receitaDTOList(receitaRepository.findAll());
+        }
+        return ReceitaMapper.receitaDTOList(receitaRepository.findByNomeReceitaList(nome));
+    }
+
+
 }

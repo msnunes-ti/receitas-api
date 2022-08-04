@@ -3,10 +3,9 @@ package com.example.receitas.controllers;
 import com.example.receitas.dtos.ReceitaDTO;
 import com.example.receitas.services.ReceitaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,9 +15,13 @@ public class ReceitaController {
 
     private final ReceitaService receitaService;
 
-    @RequestMapping(path = "/{id}")
-    public List<ReceitaDTO> buscarTodos(@PathVariable Long id) {
-        return receitaService.buscarTodos(id);
+    @GetMapping(path = "/{id}")
+    public ReceitaDTO buscarPorId(@PathVariable Long id) {
+        return receitaService.buscarTodosPorId(id);
     }
 
+    @GetMapping
+    public List<ReceitaDTO> buscarTodos(@RequestParam(required = false) @Valid String nome) {
+        return receitaService.buscarTodos(nome);
+    }
 }
