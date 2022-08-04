@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ReceitaRepository extends JpaRepository<Receita, Long> {
 
-    List<Receita> findByNomeReceitaList (String nome);
+    List<Receita> findByNomeReceita(String nome);
 }

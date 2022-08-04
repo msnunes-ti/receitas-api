@@ -16,7 +16,7 @@ public class ReceitaMapper {
         receitaDTO.setDescricao(receita.getDescricao());
         receitaDTO.setIngredientes(receita.getIngredientes());
         receitaDTO.setRendimento(receita.getRendimento());
-        receitaDTO.setVegana(receita.isVegana());
+        receitaDTO.setVegana(receita.getIsVegana());
         return receitaDTO;
     }
 
@@ -26,7 +26,7 @@ public class ReceitaMapper {
         receita.setDescricao(cadastrareceitaDTO.getDescricao());
         receita.setIngredientes(cadastrareceitaDTO.getIngredientes());
         receita.setRendimento(cadastrareceitaDTO.getRendimento());
-        receita.setVegana(cadastrareceitaDTO.isVegana());
+        receita.setIsVegana(cadastrareceitaDTO.getIsVegana());
         return receita;
     }
 

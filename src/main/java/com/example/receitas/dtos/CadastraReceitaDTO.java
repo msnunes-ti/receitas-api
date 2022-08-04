@@ -18,11 +18,11 @@ public class CadastraReceitaDTO {
     private String descricao;
 
     @NotNull
-    private Double rendimento;
+    private String rendimento;
 
     @NotNull
     private List<Ingrediente> ingredientes;
 
     @NotNull
-    private boolean isVegana;
+    private Boolean isVegana;
 }

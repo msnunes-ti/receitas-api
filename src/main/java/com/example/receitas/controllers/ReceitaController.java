@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -22,12 +23,17 @@ public class ReceitaController {
     }
 
     @GetMapping
-    public List<ReceitaDTO> buscarTodos(@RequestParam(required = false) @Valid String nome) {
+    public List<ReceitaDTO> buscarTodos(@RequestParam(required = false) String nome) {
         return receitaService.buscarTodos(nome);
     }
 
     @PostMapping
-    public void cadastraReceita(CadastraReceitaDTO cadastraReceitaDTO) {
+    public void cadastraReceita(@RequestBody @Valid @NotNull CadastraReceitaDTO cadastraReceitaDTO) {
         receitaService.cadastraReceita(cadastraReceitaDTO);
+    }
+
+    @PutMapping
+    public void atualizaReceita(@RequestBody @Valid @NotNull AtualizaReceitaDTO atualizaReceitaDTO) {
+
     }
 }

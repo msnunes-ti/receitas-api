@@ -8,6 +8,7 @@ import com.example.receitas.repositorys.ReceitaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -28,9 +29,10 @@ public class ReceitaService {
         if (nome == null) {
             return ReceitaMapper.receitaDTOList(receitaRepository.findAll());
         }
-        return ReceitaMapper.receitaDTOList(receitaRepository.findByNomeReceitaList(nome));
+        return ReceitaMapper.receitaDTOList(receitaRepository.findByNomeReceita(nome));
     }
 
+    @Transactional
     public void cadastraReceita(CadastraReceitaDTO cadastraReceitaDTO) {
         receitaRepository.save(ReceitaMapper.toReceita(cadastraReceitaDTO));
     }

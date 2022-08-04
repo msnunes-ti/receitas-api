@@ -27,14 +27,14 @@ public class Receita {
 
     @NotNull
     @Column(nullable = false)
-    private Double rendimento;
+    private String rendimento;
 
     @NotNull
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "receita_ingredientes", nullable = false)
     private List<Ingrediente> ingredientes;
 
     @NotNull
     @Column(name = "is_vegana", nullable = false)
-    private boolean isVegana;
+    private Boolean isVegana;
 }
