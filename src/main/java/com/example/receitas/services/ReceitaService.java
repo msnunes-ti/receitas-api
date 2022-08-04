@@ -1,5 +1,6 @@
 package com.example.receitas.services;
 
+import com.example.receitas.dtos.CadastraReceitaDTO;
 import com.example.receitas.dtos.ReceitaDTO;
 import com.example.receitas.mappers.ReceitaMapper;
 import com.example.receitas.models.Receita;
@@ -28,6 +29,10 @@ public class ReceitaService {
             return ReceitaMapper.receitaDTOList(receitaRepository.findAll());
         }
         return ReceitaMapper.receitaDTOList(receitaRepository.findByNomeReceitaList(nome));
+    }
+
+    public void cadastraReceita(CadastraReceitaDTO cadastraReceitaDTO) {
+        receitaRepository.save(ReceitaMapper.toReceita(cadastraReceitaDTO));
     }
 
 

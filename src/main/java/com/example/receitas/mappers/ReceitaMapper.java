@@ -1,5 +1,6 @@
 package com.example.receitas.mappers;
 
+import com.example.receitas.dtos.CadastraReceitaDTO;
 import com.example.receitas.dtos.ReceitaDTO;
 import com.example.receitas.models.Receita;
 
@@ -17,6 +18,16 @@ public class ReceitaMapper {
         receitaDTO.setRendimento(receita.getRendimento());
         receitaDTO.setVegana(receita.isVegana());
         return receitaDTO;
+    }
+
+    public static Receita toReceita(CadastraReceitaDTO cadastrareceitaDTO){
+        Receita receita = new Receita();
+        receita.setNomeReceita(cadastrareceitaDTO.getNomeReceita());
+        receita.setDescricao(cadastrareceitaDTO.getDescricao());
+        receita.setIngredientes(cadastrareceitaDTO.getIngredientes());
+        receita.setRendimento(cadastrareceitaDTO.getRendimento());
+        receita.setVegana(cadastrareceitaDTO.isVegana());
+        return receita;
     }
 
     public static List<ReceitaDTO> receitaDTOList (List<Receita> receitaList) {

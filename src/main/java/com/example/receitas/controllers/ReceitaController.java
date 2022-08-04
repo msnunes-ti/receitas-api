@@ -1,5 +1,6 @@
 package com.example.receitas.controllers;
 
+import com.example.receitas.dtos.CadastraReceitaDTO;
 import com.example.receitas.dtos.ReceitaDTO;
 import com.example.receitas.services.ReceitaService;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,10 @@ public class ReceitaController {
     @GetMapping
     public List<ReceitaDTO> buscarTodos(@RequestParam(required = false) @Valid String nome) {
         return receitaService.buscarTodos(nome);
+    }
+
+    @PostMapping
+    public void cadastraReceita(CadastraReceitaDTO cadastraReceitaDTO) {
+        receitaService.cadastraReceita(cadastraReceitaDTO);
     }
 }
