@@ -21,7 +21,7 @@ public class ReceitaDTO {
         private String descricao;
 
         @NotNull
-        private String rendimento;
+        private Double rendimento;
 
         @NotNull
         private List<Ingrediente> ingredientes;

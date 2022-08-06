@@ -27,7 +27,7 @@ public class Receita {
 
     @NotNull
     @Column(nullable = false)
-    private String rendimento;
+    private Double rendimento;
 
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)

@@ -18,7 +18,7 @@ public class AtualizaReceitaDTO {
     private String descricao;
 
     @NotNull
-    private String rendimento;
+    private Double rendimento;
 
     @NotNull
     private List<Ingrediente> ingredientes;
