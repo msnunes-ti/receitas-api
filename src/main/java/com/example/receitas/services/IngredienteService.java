@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,18 +28,10 @@ public class IngredienteService {
         return IngredienteMapper.ingredienteDTOList(ingredienteList);
     }
 
-    public void deletarIngredienteDaReceita(Long idDaReceita, Long... idsIngredientes) {
-        Receita receita = buscarReceita(idDaReceita);
-        List<Ingrediente> ingredienteList = receita.getIngredientes();
-        for (Ingrediente i : ingredienteList) {
-            for (Long id : idsIngredientes) {
-                if (i.getId().equals(id)) {
-                    ingredienteList.remove(i);
-                }
-            }
-        }
-        receitaRepository.save(receita);
+    
+
+    public void deletarIngredienteDaReceita(Long id) {
+        Optional<Ingrediente> ingrediente = Optional.ofNullable(ingredienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Id do Ingrediente não encontrado.")));
+        ingredienteRepository.deleteById(ingrediente.get().getId());
     }
-
-
 }

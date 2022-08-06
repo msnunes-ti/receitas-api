@@ -5,6 +5,7 @@ import com.example.receitas.services.IngredienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -19,8 +20,9 @@ public class IngredienteController {
         return ingredienteService.buscarIngredientesDaReceita(idReceita);
     }
 
-    @DeleteMapping(path = "/{idReceita}")
-    public void deletaIngredientesPorIds(@PathVariable Long idReceita, @RequestBody Long... idsIngredientes) {
-        ingredienteService.deletarIngredienteDaReceita(idReceita, idsIngredientes);
+    @Transactional
+    @DeleteMapping(path = "/{id}")
+    public void deletaIngredientesPorIds(@PathVariable Long id) {
+        ingredienteService.deletarIngredienteDaReceita(id);
     }
 }
