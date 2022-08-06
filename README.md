@@ -1,2 +1,2 @@
 # receitas-api
-API de Receitas Favoritas
+API de Receitas Favoritas  
