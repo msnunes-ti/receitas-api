@@ -24,8 +24,8 @@ public class ReceitaController {
     }
 
     @GetMapping
-    public List<ReceitaDTO> buscarTodos(@RequestParam(required = false) String nome) {
-        return receitaService.buscarTodos(nome);
+    public List<ReceitaDTO> buscarTodos(@RequestParam(required = false) String descricao, Boolean isVegana, Double rendimento) {
+        return receitaService.buscarTodos(descricao, isVegana, rendimento);
     }
 
     @PostMapping

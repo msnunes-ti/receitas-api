@@ -18,7 +18,7 @@ public class ReceitaService {
 
     private final ReceitaRepository receitaRepository;
 
-    private Receita buscaPorId(Long id) {
+    public Receita buscaPorId(Long id) {
         return receitaRepository.findById(id).orElseThrow(() -> new RuntimeException("Id não encontrado"));
     }
 
@@ -26,11 +26,11 @@ public class ReceitaService {
         return ReceitaMapper.toReceitaDTO(buscaPorId(id));
     }
 
-    public List<ReceitaDTO> buscarTodos(String nome) {
-        if (nome == null) {
+    public List<ReceitaDTO> buscarTodos(String descricao, Boolean isVegana, Double rendimento) {
+        if (descricao == null || isVegana == null || rendimento == null) {
             return ReceitaMapper.receitaDTOList(receitaRepository.findAll());
         }
-        return ReceitaMapper.receitaDTOList(receitaRepository.findByNomeReceita(nome));
+        return ReceitaMapper.receitaDTOList(receitaRepository.findByisVeganaAndDescricaoContainsAndRendimento(isVegana, descricao, rendimento));
     }
 
     @Transactional

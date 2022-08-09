@@ -10,6 +10,9 @@ import javax.validation.constraints.NotNull;
 public class AtualizaIngredienteDTO {
 
     @NotNull
+    private Long id;
+
+    @NotNull
     private String nomeIngrediente;
 
     @NotNull

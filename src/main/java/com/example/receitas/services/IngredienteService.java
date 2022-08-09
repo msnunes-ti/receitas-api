@@ -1,5 +1,6 @@
 package com.example.receitas.services;
 
+import com.example.receitas.dtos.AtualizaIngredienteDTO;
 import com.example.receitas.dtos.CadastraIngredienteDTO;
 import com.example.receitas.dtos.IngredienteDTO;
 import com.example.receitas.mappers.IngredienteMapper;
@@ -35,10 +36,19 @@ public class IngredienteService {
         ingrediente.setQuantidadeIngrediente(cadastraIngredienteDTO.getQuantidadeIngrediente());
         Receita receita = receitaRepository.getReferenceById(idReceita);
         receita.getIngredientes().add(ingrediente);
+        receitaRepository.save(receita);
+    }
+
+    public void atualizaIngrediente(AtualizaIngredienteDTO atualizaIngredienteDTO) {
+        Ingrediente adicionarIngrediente = IngredienteMapper.toIngrediente(atualizaIngredienteDTO);
+        ingredienteRepository.save(adicionarIngrediente);
     }
 
     public void deletarIngredienteDaReceita(Long id) {
         Optional<Ingrediente> ingrediente = Optional.ofNullable(ingredienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Id do Ingrediente não encontrado.")));
+        if (ingrediente.isEmpty()) {
+            throw new RuntimeException("Ingrediente não encontrado");
+        }
         ingredienteRepository.deleteById(ingrediente.get().getId());
     }
 }

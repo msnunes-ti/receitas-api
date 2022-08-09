@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ReceitaRepository extends JpaRepository<Receita, Long> {
 
-    List<Receita> findByNomeReceita(String nome);
+    List<Receita> findByisVeganaAndDescricaoContainsAndRendimento(Boolean isVegana, String descricao, Double rendimento);
 
-    Optional<Receita> findById (Long id);
+    Optional<Receita> findById(Long id);
 }

@@ -1,5 +1,6 @@
 package com.example.receitas.controllers;
 
+import com.example.receitas.dtos.AtualizaIngredienteDTO;
 import com.example.receitas.dtos.CadastraIngredienteDTO;
 import com.example.receitas.dtos.IngredienteDTO;
 import com.example.receitas.services.IngredienteService;
@@ -28,9 +29,9 @@ public class IngredienteController {
     }
 
     @Transactional
-    @PostMapping(path = "/{idReceita}")
-    public void atualizaIngrediente(@PathVariable Long idReceita, @RequestBody CadastraIngredienteDTO cadastraIngredienteDTO) {
-        ingredienteService.cadastrarIngrediente(idReceita, cadastraIngredienteDTO);
+    @PutMapping
+    public void atualizaIngrediente(@RequestBody AtualizaIngredienteDTO atualizaIngredienteDTO) {
+        ingredienteService.atualizaIngrediente(atualizaIngredienteDTO);
     }
 
     @Transactional

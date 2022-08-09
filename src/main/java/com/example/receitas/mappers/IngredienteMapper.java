@@ -1,5 +1,6 @@
 package com.example.receitas.mappers;
 
+import com.example.receitas.dtos.AtualizaIngredienteDTO;
 import com.example.receitas.dtos.IngredienteDTO;
 import com.example.receitas.models.Ingrediente;
 
@@ -15,6 +16,14 @@ public class IngredienteMapper {
         ingredienteDTO.setNomeIngrediente(ingrediente.getNomeIngrediente());
         ingredienteDTO.setQuantidadeIngrediente(ingrediente.getQuantidadeIngrediente());
         return ingredienteDTO;
+    }
+
+    public static Ingrediente toIngrediente(AtualizaIngredienteDTO atualizaIngredienteDTO) {
+        Ingrediente ingrediente = new Ingrediente();
+        ingrediente.setId(atualizaIngredienteDTO.getId());
+        ingrediente.setNomeIngrediente(atualizaIngredienteDTO.getNomeIngrediente());
+        ingrediente.setQuantidadeIngrediente(atualizaIngredienteDTO.getQuantidadeIngrediente());
+        return ingrediente;
     }
 
     public static List<IngredienteDTO> ingredienteDTOList(List<Ingrediente> ingredienteList) {

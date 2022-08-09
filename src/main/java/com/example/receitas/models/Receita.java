@@ -30,7 +30,8 @@ public class Receita {
     private Double rendimento;
 
     @NotNull
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "receita_ingredientes", nullable = false)
     private List<Ingrediente> ingredientes;
 
