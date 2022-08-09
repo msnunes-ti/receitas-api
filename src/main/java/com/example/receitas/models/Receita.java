@@ -31,7 +31,6 @@ public class Receita {
 
     @NotNull
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "receita_ingredientes", nullable = false)
     private List<Ingrediente> ingredientes;
 
