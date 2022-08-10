@@ -17,5 +17,4 @@ public class AtualizaIngredienteDTO {
 
     @NotNull
     private String quantidadeIngrediente;
-
 }

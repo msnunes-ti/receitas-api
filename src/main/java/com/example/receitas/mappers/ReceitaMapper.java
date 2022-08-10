@@ -48,5 +48,4 @@ public class ReceitaMapper {
         }
         return receitaDTOList;
     }
-
 }
