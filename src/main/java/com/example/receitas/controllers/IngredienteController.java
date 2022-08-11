@@ -22,13 +22,11 @@ public class IngredienteController {
         return ingredienteService.buscarIngredientesDaReceita(idReceita);
     }
 
-    @Transactional
     @PostMapping(path = "/{idReceita}")
     public void adicionarIngrediente(@PathVariable Long idReceita, @RequestBody CadastraIngredienteDTO cadastraIngredienteDTO) {
         ingredienteService.cadastrarIngrediente(idReceita, cadastraIngredienteDTO);
     }
 
-    @Transactional
     @PutMapping
     public void atualizaIngrediente(@RequestBody AtualizaIngredienteDTO atualizaIngredienteDTO) {
         ingredienteService.atualizaIngrediente(atualizaIngredienteDTO);
