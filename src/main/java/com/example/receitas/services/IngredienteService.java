@@ -11,6 +11,7 @@ import com.example.receitas.repositorys.ReceitaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,7 @@ public class IngredienteService {
         return IngredienteMapper.ingredienteDTOList(ingredienteList);
     }
 
+    @Transactional
     public void cadastrarIngrediente(Long idReceita, CadastraIngredienteDTO cadastraIngredienteDTO) {
         Ingrediente ingrediente = new Ingrediente();
         ingrediente.setNomeIngrediente(cadastraIngredienteDTO.getNomeIngrediente());
@@ -39,11 +41,13 @@ public class IngredienteService {
         receitaRepository.save(receita);
     }
 
+    @Transactional
     public void atualizaIngrediente(AtualizaIngredienteDTO atualizaIngredienteDTO) {
         Ingrediente adicionarIngrediente = IngredienteMapper.toIngrediente(atualizaIngredienteDTO);
         ingredienteRepository.save(adicionarIngrediente);
     }
 
+    @Transactional
     public void deletarIngredienteDaReceita(Long id) {
         Optional<Ingrediente> ingrediente = Optional.ofNullable(ingredienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Id do Ingrediente não encontrado.")));
         if (ingrediente.isEmpty()) {
