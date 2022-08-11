@@ -32,7 +32,6 @@ public class IngredienteController {
         ingredienteService.atualizaIngrediente(atualizaIngredienteDTO);
     }
 
-    @Transactional
     @DeleteMapping(path = "/{id}")
     public void deletaIngredientesPorIds(@PathVariable Long id) {
         ingredienteService.deletarIngredienteDaReceita(id);
