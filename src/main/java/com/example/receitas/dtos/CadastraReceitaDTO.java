@@ -4,6 +4,7 @@ import com.example.receitas.models.Ingrediente;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class CadastraReceitaDTO {
     @NotNull
     private Double rendimento;
 
+    @Valid
     @NotNull
     private List<Ingrediente> ingredientes;
 

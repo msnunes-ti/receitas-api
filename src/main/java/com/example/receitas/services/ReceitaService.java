@@ -7,6 +7,7 @@ import com.example.receitas.mappers.ReceitaMapper;
 import com.example.receitas.models.Receita;
 import com.example.receitas.repositorys.ReceitaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,6 +19,7 @@ public class ReceitaService {
 
     private final ReceitaRepository receitaRepository;
 
+    @Scheduled
     public Receita buscaPorId(Long id) {
         return receitaRepository.findById(id).orElseThrow(() -> new RuntimeException("Id não encontrado"));
     }
