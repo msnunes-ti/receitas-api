@@ -23,5 +23,5 @@ public class Ingrediente {
     @NotNull
     @Column(name = "qtde_ingrediente", nullable = false)
     private String quantidadeIngrediente;
-    
+
 }
